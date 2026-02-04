@@ -1,162 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Social Networks</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Networks</title>
 
-    <style>
-        /* ===== Reset ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        body {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #0a0800, #1a1400);
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-            padding: 20px;
-        }
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
+    background:
+        linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+        url("I.jpeg") center/cover no-repeat;
+    padding:20px;
+}
 
-        .container {
-            width: 100%;
-            max-width: 400px;
-        }
+/* ===== Container ===== */
+.container{
+    width:100%;
+    max-width:420px;
+    transform: translateY(4vh);
+}
 
-        /* ===== Gold Box ===== */
-        .gold-box {
-            position: relative;
-            padding: 30px;
-            border-radius: 25px;
-            background: linear-gradient(135deg, #ffd700, #daa520, #b8860b);
-            box-shadow:
-                0 25px 60px rgba(0,0,0,0.8),
-                inset 0 0 100px rgba(255,215,0,0.4);
-            overflow: hidden;
-        }
+/* ===== Gold Box ===== */
+.gold-box{
+    padding:45px 30px 35px;
+    border-radius:30px;
+    background:linear-gradient(135deg,#ffd700,#daa520,#b8860b);
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.85),
+        inset 0 0 110px rgba(255,215,0,.45);
+    text-align:center;
+}
 
-        /* Shine */
-        .shine {
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(255,255,255,0.3),
-                transparent
-            );
-            transition: 1s;
-        }
+/* ===== Logo ===== */
+.inner-logo{
+    width:115px;
+    height:115px;
+    margin:0 auto 15px; /* رفع اللوجو */
+    border-radius:50%;
+    background:rgba(0,0,0,.25);
+    padding:6px;
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
 
-        .gold-box:hover .shine {
-            left: 100%;
-        }
+.inner-logo img{
+    width:100%;
+    height:100%;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #ffd700;
+    z-index:2;
+}
 
-        /* ===== Social Item ===== */
-        .social-item {
-            display: flex;
-            align-items: center;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 18px;
-            background: rgba(20,20,20,0.9);
-            border: 2px solid rgba(255,215,0,0.4);
-            cursor: pointer;
-            transition: 0.3s ease;
-            box-shadow:
-                0 8px 25px rgba(0,0,0,0.6),
-                inset 0 0 30px rgba(255,215,0,0.2);
-        }
+/* Circular glow */
+.inner-logo::before,
+.inner-logo::after{
+    content:"";
+    position:absolute;
+    border-radius:50%;
+    inset:-10px;
+    border:2px solid rgba(255,215,0,.6);
+    animation:pulse 3s infinite;
+}
 
-        .social-item:last-child {
-            margin-bottom: 0;
-        }
+.inner-logo::after{
+    inset:-20px;
+    opacity:.4;
+    animation-delay:1.5s;
+}
 
-        .social-item:hover {
-            transform: translateX(8px);
-            box-shadow:
-                0 15px 35px rgba(0,0,0,0.8),
-                inset 0 0 40px rgba(255,215,0,0.3);
-        }
+@keyframes pulse{
+    0%{transform:scale(.96); opacity:.6;}
+    100%{transform:scale(1.08); opacity:0;}
+}
 
-        .social-item:active {
-            transform: scale(0.97);
-        }
+/* ===== Name ===== */
+.site-name{
+    font-size:24px;
+    font-weight:bold;
+    margin-bottom:30px; /* مسافة واضحة قبل Instagram */
+    color:#1a1400;
+    text-shadow:0 2px 6px rgba(0,0,0,.35);
+}
 
-        /* ===== Logo ===== */
-        .logo {
-            width: 50px;
-            height: 50px;
-            margin-right: 20px;
-            border-radius: 12px;
-            object-fit: cover;
-            border: 2px solid rgba(255,215,0,0.5);
-            filter: drop-shadow(0 0 8px rgba(255,215,0,0.6));
-            transition: 0.3s;
-        }
+/* ===== Social Item ===== */
+.social-item{
+    display:flex;
+    align-items:center;
+    padding:20px;
+    margin-bottom:20px;
+    border-radius:20px;
+    background:rgba(15,15,15,.92);
+    border:2px solid rgba(255,215,0,.5);
+    cursor:pointer;
+    transition:.3s;
+    text-align:left;
+}
 
-        .social-item:hover .logo {
-            transform: scale(1.15) rotate(6deg);
-        }
+.social-item:last-child{
+    margin-bottom:0;
+}
 
-        /* ===== Text ===== */
-        .social-text {
-            flex: 1;
-        }
+.social-item:hover{
+    transform:translateX(6px);
+    box-shadow:0 14px 32px rgba(0,0,0,.8);
+}
 
-        .social-name {
-            font-size: 20px;
-            font-weight: bold;
-            color: #ffd700;
-        }
+/* ===== Social Logo ===== */
+.logo{
+    width:50px;
+    height:50px;
+    margin-right:18px;
+    border-radius:14px;
+    object-fit:cover;
+    border:2px solid rgba(255,215,0,.6);
+}
 
-        .social-desc {
-            font-size: 14px;
-            color: #e6c26e;
-        }
+/* ===== Text ===== */
+.social-text{flex:1;}
 
-        /* ===== Arrow ===== */
-        .arrow {
-            font-size: 24px;
-            color: #ffd700;
-            opacity: 0.8;
-            transition: 0.3s;
-        }
+.social-name{
+    font-size:20px;
+    font-weight:bold;
+    color:#ffd700;
+}
 
-        .social-item:hover .arrow {
-            transform: translateX(6px);
-            opacity: 1;
-        }
+.social-desc{
+    font-size:14px;
+    color:#f1d27a;
+}
 
-        /* ===== Responsive ===== */
-        @media (max-width: 480px) {
-            .gold-box { padding: 25px; }
-            .social-item { padding: 18px; }
-            .logo { width: 45px; height: 45px; }
-            .social-name { font-size: 18px; }
-            .social-desc { font-size: 13px; }
-        }
-    </style>
+/* ===== Arrow ===== */
+.arrow{
+    font-size:24px;
+    color:#ffd700;
+}
+
+/* ===== Responsive ===== */
+@media(max-width:480px){
+    .container{
+        transform: translateY(3vh);
+    }
+    .inner-logo{
+        width:100px;
+        height:100px;
+    }
+    .site-name{
+        font-size:22px;
+        margin-bottom:26px;
+    }
+    .gold-box{
+        padding:35px 25px;
+    }
+}
+</style>
 </head>
 
 <body>
 
 <div class="container">
     <div class="gold-box">
-        <div class="shine"></div>
+
+        <!-- Logo -->
+        <div class="inner-logo">
+            <img src="I.jpeg" alt="Logo">
+        </div>
+
+        <!-- Name -->
+        <div class="site-name">IR❤️EiNA</div>
 
         <!-- Instagram -->
         <div class="social-item" onclick="openLink('https://www.instagram.com/najou__10k?igsh=YWprY2J0aTIxeW5t')">
-            <img src="14.jpg" class="logo" alt="Instagram"
-                 onerror="this.style.background='linear-gradient(45deg,#833AB4,#FD1D1D,#FCAF45)';">
+            <img src="14.jpg" class="logo">
             <div class="social-text">
                 <div class="social-name">Instagram</div>
                 <div class="social-desc">Follow us on Instagram</div>
@@ -166,8 +194,7 @@
 
         <!-- TikTok -->
         <div class="social-item" onclick="openLink('https://www.tiktok.com/@irina_light10k?_r=1&_t=ZS-93cqCnPtyE8')">
-            <img src="t.png" class="logo" alt="TikTok"
-                 onerror="this.style.background='#000';">
+            <img src="t.png" class="logo">
             <div class="social-text">
                 <div class="social-name">TikTok</div>
                 <div class="social-desc">Discover our TikTok</div>
@@ -177,8 +204,7 @@
 
         <!-- Facebook -->
         <div class="social-item" onclick="openLink('https://www.facebook.com/share/17XfCWWAd3/')">
-            <img src="13.webp" class="logo" alt="Facebook"
-                 onerror="this.style.background='#1877F2';">
+            <img src="13.webp" class="logo">
             <div class="social-text">
                 <div class="social-name">Facebook</div>
                 <div class="social-desc">Join us on Facebook</div>
@@ -190,9 +216,9 @@
 </div>
 
 <script>
-    function openLink(url) {
-        window.open(url, "_blank");
-    }
+function openLink(url){
+    window.open(url,"_blank");
+}
 </script>
 
 </body>
