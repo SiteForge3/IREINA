@@ -20,7 +20,7 @@ body{
     font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
     background:
         linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
-        url("i.jpeg") center/cover no-repeat; /* تأكد اسم الصورة صحيح */
+        url("i.jpeg") center/cover no-repeat;
     padding:20px;
 }
 
@@ -42,15 +42,14 @@ body{
     text-align:center;
 }
 
-/* ===== Logo ===== */
+/* ===== Logo (Square) ===== */
 .inner-logo{
     width:115px;
     height:115px;
     margin:0 auto 15px;
-    border-radius:50%;
+    border-radius:20px;
     background:rgba(0,0,0,.25);
     padding:6px;
-    position:relative;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -59,39 +58,16 @@ body{
 .inner-logo img{
     width:100%;
     height:100%;
-    border-radius:50%;
+    border-radius:15px;
     object-fit:cover;
     border:3px solid #ffd700;
-    z-index:2;
-}
-
-/* Circular glow */
-.inner-logo::before,
-.inner-logo::after{
-    content:"";
-    position:absolute;
-    border-radius:50%;
-    inset:-10px;
-    border:2px solid rgba(255,215,0,.6);
-    animation:pulse 3s infinite;
-}
-
-.inner-logo::after{
-    inset:-20px;
-    opacity:.4;
-    animation-delay:1.5s;
-}
-
-@keyframes pulse{
-    0%{transform:scale(.96); opacity:.6;}
-    100%{transform:scale(1.08); opacity:0;}
 }
 
 /* ===== Name ===== */
 .site-name{
-    font-size:24px;
+    font-size:22px;
     font-weight:bold;
-    margin-bottom:30px;
+    margin-bottom:25px;
     color:#1a1400;
     text-shadow:0 2px 6px rgba(0,0,0,.35);
 }
@@ -108,10 +84,6 @@ body{
     cursor:pointer;
     transition:.3s;
     text-align:left;
-}
-
-.social-item:last-child{
-    margin-bottom:0;
 }
 
 .social-item:hover{
@@ -143,28 +115,34 @@ body{
     color:#f1d27a;
 }
 
-/* ===== Arrow ===== */
 .arrow{
     font-size:24px;
     color:#ffd700;
 }
 
-/* ===== Responsive ===== */
-@media(max-width:480px){
-    .container{
-        transform: translateY(3vh);
-    }
-    .inner-logo{
-        width:100px;
-        height:100px;
-    }
-    .site-name{
-        font-size:22px;
-        margin-bottom:26px;
-    }
-    .gold-box{
-        padding:35px 25px;
-    }
+/* ===== Bio Section ===== */
+.bio-box{
+    display:none;
+    margin-top:20px;
+    padding:20px;
+    border-radius:20px;
+    background:rgba(0,0,0,.85);
+    border:2px solid gold;
+    color:#ffd700;
+    text-align:left;
+    line-height:1.8;
+    font-size:14px;
+}
+
+.show-bio{
+    margin-top:15px;
+    padding:14px;
+    border-radius:18px;
+    background:#000;
+    color:#ffd700;
+    border:2px solid gold;
+    cursor:pointer;
+    font-weight:bold;
 }
 </style>
 </head>
@@ -176,11 +154,11 @@ body{
 
         <!-- Logo -->
         <div class="inner-logo">
-            <img src="i.jpeg" alt="Logo"> <!-- تأكد اسم الملف صحيح -->
+            <img src="1.jpeg" alt="Logo">
         </div>
 
         <!-- Name -->
-        <div class="site-name">IR❤️EiNA</div>
+        <div class="site-name">🦋⃤نـِِـِـآجـ,ـوُ⋆.˚🦋༘⋆🇩🇿</div>
 
         <!-- Instagram -->
         <div class="social-item" onclick="openLink('https://www.instagram.com/najou__10k?igsh=YWprY2J0aTIxeW5t')">
@@ -192,8 +170,8 @@ body{
             <div class="arrow">→</div>
         </div>
 
-        <!-- TikTok -->
-        <div class="social-item" onclick="openLink('https://www.tiktok.com/@irina_light10k?_r=1&_t=ZS-93cqCnPtyE8')">
+        <!-- TikTok (UPDATED) -->
+        <div class="social-item" onclick="openLink('https://www.tiktok.com/@najou__10k?_r=1&_t=ZS-93gm1SOkhEr')">
             <img src="t.png" class="logo">
             <div class="social-text">
                 <div class="social-name">TikTok</div>
@@ -212,12 +190,30 @@ body{
             <div class="arrow">→</div>
         </div>
 
+        <!-- Bio Button -->
+        <div class="show-bio" onclick="toggleBio()">نبذة عني</div>
+
+        <!-- Bio Content -->
+        <div class="bio-box" id="bio">
+📍ғʀᴇᴇ ғɪʀᴇ ᴘʟᴀʏᴇʀ 🎀<br>
+📍ᴍʏ ғᴀᴍɪʟʏ:ᴄᴜᴛᴇ-ᴛʀᴏᴜʙʟᴇ🎀<br>
+📍ᴍʏ ᴅʀᴇᴀᴍ 100ᴋ ᴏɴ ɪɢ🎀<br>
+📍ᴍʏ ғғ ɪᴅ: 1221134701🎀<br>
+📍ᴄʟᴀɴ ɪᴅ:3083196433🎀<br>
+📍ᴄʟᴀɴ ᴏɴʟʏ ɢ!ʀʟs 🎀
+        </div>
+
     </div>
 </div>
 
 <script>
 function openLink(url){
     window.open(url,"_blank");
+}
+
+function toggleBio(){
+    const bio = document.getElementById("bio");
+    bio.style.display = bio.style.display === "block" ? "none" : "block";
 }
 </script>
 
